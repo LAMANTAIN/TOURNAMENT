@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bracket - Tournoi</title>
+
+    <!-- Chargement des feuilles de style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/styles_accueil.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Tournoi: {{ tournoi.nom }}</h1>
+        </div>
+        <div class="login">
+            <a href="{% url 'admin:index' %}" class="btn btn-warning">Se Connecter</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="bracket-section">
+            <h2>BRACKET</h2>
+            <div class="bracket" id="tournoi"></div> <!-- L'arbre de tournoi sera généré ici -->
+        </section>
+    </main>
+
+    <!-- JavaScript pour passer les données de Django vers JavaScript -->
+    <script>
+          // Données des quarts de finale
+        const teamsData = [
+            {% for match in quart_de_finale %}
+                ["{{ match.participant1.nom }}", "{{ match.participant2.nom }}", {{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+            {% empty %}
+                ["Aucun quart de finale", "Aucun adversaire", 0, 0]
+            {% endfor %}
+        ];
+
+        // Données des demi-finales
+        const demiFinaleData = [
+            {% for match in demi_finale %}
+                ["{{ match.participant1.nom }}", "{{ match.participant2.nom }}", {{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+            {% empty %}
+                ["Aucune demi-finale", "Aucun adversaire", 0, 0]
+            {% endfor %}
+        ];
+
+        // Données des finales
+        const finaleData = [
+            {% for match in finale %}
+                ["{{ match.participant1.nom }}", "{{ match.participant2.nom }}", {{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+            {% empty %}
+                ["Aucune finale", "Aucun adversaire", 0, 0]
+            {% endfor %}
+        ];
+
+        // Gagnant du tournoi (uniquement une case pour le gagnant)
+        const championData = [
+            {% if tournoi.champion %}
+                ["{{ tournoi.champion.nom }}"]
+            {% else %}
+                ["En attente"]
+            {% endif %}
+        ];
+    
+        // Résultats des matchs
+        const resultsData = [
+            // Résultats des quarts de finale
+            [
+                {% for match in quart_de_finale %}
+                    [{{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+                {% endfor %}
+            ],
+            // Résultats des demi-finales
+            [
+                {% for match in demi_finale %}
+                    [{{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+                {% endfor %}
+            ],
+            // Résultats des finales
+            [
+                {% for match in finale %}
+                    [{{ match.score_participant1|default:0 }}, {{ match.score_participant2|default:0 }}],
+                {% endfor %}
+            ]
+        ];
+    </script>
+    
+    <script src="{% static 'js/tournament.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

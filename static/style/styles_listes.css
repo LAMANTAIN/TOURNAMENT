@@ -1,0 +1,79 @@
+/* Appliquez directement à tout le document */
+html, body {
+    height: 100%; /* S'assure que le corps prend toute la hauteur */
+    background-color: #262626 !important; /* Fond sombre forcé avec !important */
+    color: #fff; /* Texte en blanc */
+    font-family: 'Press Start 2P', cursive; /* Police rétro */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-height: 100vh; /* Minimum hauteur de la page entière */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px #ff0077, 0 0 20px #ff0077, 0 0 30px #3682b8;
+    color: #ff0077;
+    margin-bottom: 40px;
+}
+
+.list-group-item {
+    background-color: transparent; /* Fond transparent pour chaque élément */
+    border: 2px solid #ff0077; /* Bordure rose pour les éléments */
+    color: #fff;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.list-group-item:hover {
+    background-color: #ff0077; /* Fond rose au survol */
+    color: #262626; /* Texte sombre au survol */
+    box-shadow: 0 0 15px #ff0077, 0 0 25px #3682b8, 0 0 35px #ff0077;
+    transition: 0.3s;
+}
+
+a {
+    color: #fff; /* Couleur blanche pour les liens */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #262626; /* Lien change de couleur au survol */
+}
+
+/* Effet néon global */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 0, 119, 0.2), transparent 70%);
+    z-index: -1;
+}
+
+/* Forcer un fond sombre au cas où */
+body {
+    background-color: #262626 !important; /* Forcer le fond sombre */
+}
+
+/* Effet pour petits écrans */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+    }
+}
