@@ -31,6 +31,20 @@ npm start
 
 Accédez à l'application via `http://localhost:3000`.
 
+## 🎯 Aperçu de l'application
+
+### 🏠 Page d'accueil
+![Page d'accueil](images/accueil.png)
+
+### 🛠️ Création d’un tournoi
+![Création tournoi](images/gestion_tournois.png)
+
+### 👤 Vue joueur / inscription
+![Vue joueur](images/gestion_joueurs.png)
+
+### 🏆 Bracket de tournoi
+![Bracket](images/tournois.png)
+
 ## Licence
 
 Ce projet est sous licence MIT.
