@@ -18,7 +18,7 @@ Ce projet est une application de gestion de tournois permettant d'organiser, sui
 ## Installation
 
 ```bash
-git clone https://github.com/votre-utilisateur/project-management-system.git
+git clone https://github.com/LAMANTAIN/TOURNAMENT
 cd TOURNAMENT
 npm install
 ```
